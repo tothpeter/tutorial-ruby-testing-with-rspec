@@ -88,4 +88,16 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # config.after(:example) do
+  #   puts "I just ran a test."
+  # end
+  
+  # config.before(:suite) do
+  #   puts "Welcome!"
+  # end
+  
+  # config.after(:example) do |example|
+  #   puts example.inspect
+  # end
 end
