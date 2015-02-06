@@ -17,8 +17,9 @@ class PriceCalculator
 end
 
 describe "Stubs" do
+  let(:calculator) { PriceCalculator.new }
+
   it "provides stubs to simulate state" do
-    calculator = PriceCalculator.new
 
     # calculator.add double(price: 1.0)
     # calculator.add double(price: 100.25)
@@ -40,5 +41,32 @@ describe "Stubs" do
     # 2.times { calculator.add product_stub }
 
     expect(calculator.final_price).to eq 101.25
+  end
+
+  it "provides mocks to assert on message passing" do
+    product_mock = double(:product)
+    # we want the price message received/called
+    # expect(product_mock).to receive(:price).with(2)
+    # expect(product_mock).to receive(:price).with(no_args)
+    # expect(product_mock).to receive(:price).with(any_args)
+    # expect(product_mock).to receive(:price)
+    # expect(product_mock).to receive(:price).once
+    # expect(product_mock).to receive(:price).exactly(3).times.and_return(5)
+    expect(product_mock).to receive(:price).at_least(3).times.and_return(5)
+
+    calculator.add product_mock
+    calculator.add product_mock
+    calculator.add product_mock
+
+    calculator.final_price
+  end
+
+  it "provides mocks to assert on message passing2" do
+    allow_any_instance_of(Product).to receive(:price) { 5 }
+    # expect_any_instance_of(Product).to receive(:price) { 5 }
+
+    product = Product.new 1,2,3
+
+    product.price
   end
 end
