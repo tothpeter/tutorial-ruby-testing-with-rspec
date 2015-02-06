@@ -64,14 +64,24 @@ describe "Matchers" do
     }.to throw_symbol
   end
 
-  it "asserts on predicates" do
+  xit "asserts on predicates" do
     class A
       def good?
-        true
+        raise ArgumentError
       end
     end
 
     expect(A.new).to be_good
+  end
+
+  it "skip it", skip: 'Not really important' do
+    # pending
+    # skip
+  end
+
+  fit "verry important" do
+    # rspec --tag focus
+    # we can use "f" for the whole description
   end
 
   it "asserts on collections" do
