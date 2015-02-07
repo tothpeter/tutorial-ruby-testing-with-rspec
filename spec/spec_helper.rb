@@ -1,12 +1,15 @@
 require "environment"
 require "factory_girl"
 require "database_cleaner"
+require "rack/test"
 
 require_relative "./factories.rb"
 
 RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
+  # In this case every single methods would have those methods
+  # config.include Racj::Test::Methods
 
   config.before(:suite) do
     begin
